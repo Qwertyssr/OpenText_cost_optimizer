@@ -1,34 +1,71 @@
 {
-  "project_name": "food delivery app",
+  "project_name": "Food Delivery App",
   "analysis": {
-    "total_monthly_cost": 48000,
+    "total_monthly_cost": 13000.0,
     "budget": 50000,
-    "budget_variance": -2000,
+    "budget_variance": -37000.0,
     "service_costs": {
-      "AWS S3": 28000,
-      "AWS EC2": 15000,
-      "AWS Lambda": 5000
+      "AWS EC2": 9315.0,
+      "AWS S3": 260.0,
+      "AWS RDS": 3250.0,
+      "AWS Lambda": 175.0
     },
     "high_cost_services": {
-      "AWS S3": 28000
+      "AWS EC2": 9315.0
     },
     "is_over_budget": false
   },
   "is_over_budget": false,
   "recommendations": [
     {
-      "title": "Migrate to Azure Blob Storage",
-      "service": "Storage",
-      "current_cost": 28000,
-      "potential_savings": 5600,
-      "recommendation_type": "Multi-cloud",
-      "description": "Migrate data storage from AWS S3 to Azure Blob Storage to take advantage of lower costs.",
+      "title": "Rightsizing EC2 Instances",
+      "service": "AWS EC2",
+      "current_cost": 9315.0,
+      "potential_savings": 2862.75,
+      "recommendation_type": "Rightsizing",
+      "description": "Downsize EC2 instances to match workload requirements",
       "implementation_effort": "Medium",
+      "risk_level": "Low",
+      "steps": [
+        "Monitor EC2 instance utilization",
+        "Identify instances that can be rightsized",
+        "Update instance types in AWS Management Console"
+      ],
+      "cloud_providers": [
+        "AWS"
+      ]
+    },
+    {
+      "title": "Use Free Tiers for S3",
+      "service": "AWS S3",
+      "current_cost": 260.0,
+      "potential_savings": 260.0,
+      "recommendation_type": "Free Tiers",
+      "description": "Utilize free S3 tiers for infrequently accessed data",
+      "implementation_effort": "Low",
+      "risk_level": "Low",
+      "steps": [
+        "Identify infrequently accessed data",
+        "Move data to free S3 tiers",
+        "Configure access permissions"
+      ],
+      "cloud_providers": [
+        "AWS"
+      ]
+    },
+    {
+      "title": "Migrate RDS to Azure",
+      "service": "AWS RDS",
+      "current_cost": 3250.0,
+      "potential_savings": 2475.0,
+      "recommendation_type": "Migrate to Another Cloud",
+      "description": "Migrate RDS to Azure for cost optimization",
+      "implementation_effort": "High",
       "risk_level": "Medium",
       "steps": [
-        "Assess data storage requirements and migration complexity",
-        "Configure Azure Blob Storage account",
-        "Migrate data from AWS S3 to Azure Blob Storage"
+        "Assess RDS compatibility with Azure",
+        "Migrate RDS to Azure using Azure Database Migration Service",
+        "Configure Azure RDS instance"
       ],
       "cloud_providers": [
         "AWS",
@@ -36,17 +73,36 @@
       ]
     },
     {
-      "title": "Use GCP Cloud Storage for Backup",
-      "service": "Storage",
-      "current_cost": 28000,
-      "potential_savings": 1700,
-      "recommendation_type": "Multi-cloud",
-      "description": "Use GCP Cloud Storage for backup purposes to reduce costs on AWS S3.",
-      "implementation_effort": "Low",
+      "title": "Replace Lambda with Open-Source Alternatives",
+      "service": "AWS Lambda",
+      "current_cost": 175.0,
+      "potential_savings": 175.0,
+      "recommendation_type": "Open-Source Alternatives",
+      "description": "Replace Lambda with open-source alternatives like Apache OpenWhisk",
+      "implementation_effort": "Medium",
       "risk_level": "Low",
       "steps": [
-        "Configure GCP Cloud Storage account",
-        "Set up backup process to use GCP Cloud Storage"
+        "Assess Lambda workloads",
+        "Implement open-source alternatives",
+        "Configure and test open-source solutions"
+      ],
+      "cloud_providers": [
+        "AWS"
+      ]
+    },
+    {
+      "title": "Use GCP's Persistent Disks for Cost Optimization",
+      "service": "AWS EC2",
+      "current_cost": 9315.0,
+      "potential_savings": 1432.0,
+      "recommendation_type": "Migrate to Another Cloud",
+      "description": "Migrate EC2 to GCP and utilize Persistent Disks for cost optimization",
+      "implementation_effort": "High",
+      "risk_level": "Medium",
+      "steps": [
+        "Assess EC2 compatibility with GCP",
+        "Migrate EC2 to GCP using Cloud Migration Service",
+        "Configure GCP Persistent Disks"
       ],
       "cloud_providers": [
         "AWS",
@@ -54,60 +110,64 @@
       ]
     },
     {
-      "title": "Downsize AWS EC2 Instances",
-      "service": "Compute",
-      "current_cost": 15000,
-      "potential_savings": 3000,
-      "recommendation_type": "Rightsizing",
-      "description": "Downsize AWS EC2 instances to match current workload requirements.",
+      "title": "Utilize Azure Spot Instances for Cost Savings",
+      "service": "AWS EC2",
+      "current_cost": 9315.0,
+      "potential_savings": 2600.0,
+      "recommendation_type": "Spot Instances",
+      "description": "Utilize Azure Spot Instances for cost-effective computing",
       "implementation_effort": "Medium",
       "risk_level": "Medium",
       "steps": [
-        "Assess current workload requirements",
-        "Downsize EC2 instances to match requirements"
-      ],
-      "cloud_providers": [
-        "AWS"
-      ]
-    },
-    {
-      "title": "Use AWS Lambda Free Tier",
-      "service": "Serverless Compute",
-      "current_cost": 5000,
-      "potential_savings": 5000,
-      "recommendation_type": "Free Tier",
-      "description": "Utilize the free tier of AWS Lambda to reduce costs.",
-      "implementation_effort": "Low",
-      "risk_level": "Low",
-      "steps": [
-        "Review current usage of AWS Lambda",
-        "Configure AWS Lambda functions to use free tier"
-      ],
-      "cloud_providers": [
-        "AWS"
-      ]
-    },
-    {
-      "title": "Use Open-Source Alternatives for AWS Services",
-      "service": "Database",
-      "current_cost": 0,
-      "potential_savings": 15000,
-      "recommendation_type": "Open-source Alternatives",
-      "description": "Use open-source alternatives for AWS services to reduce costs.",
-      "implementation_effort": "High",
-      "risk_level": "High",
-      "steps": [
-        "Assess current database requirements",
-        "Migrate to open-source database solutions"
+        "Assess EC2 workloads",
+        "Implement Azure Spot Instances",
+        "Configure and test Spot Instances"
       ],
       "cloud_providers": [
         "AWS",
-        "GCP",
         "Azure"
+      ]
+    },
+    {
+      "title": "Rightsizing RDS Instances",
+      "service": "AWS RDS",
+      "current_cost": 3250.0,
+      "potential_savings": 1200.0,
+      "recommendation_type": "Rightsizing",
+      "description": "Downsize RDS instances to match workload requirements",
+      "implementation_effort": "Medium",
+      "risk_level": "Low",
+      "steps": [
+        "Monitor RDS instance utilization",
+        "Identify instances that can be rightsized",
+        "Update instance types in AWS Management Console"
+      ],
+      "cloud_providers": [
+        "AWS"
+      ]
+    },
+    {
+      "title": "Migrate S3 to GCP's Cloud Storage",
+      "service": "AWS S3",
+      "current_cost": 260.0,
+      "potential_savings": 130.0,
+      "recommendation_type": "Migrate to Another Cloud",
+      "description": "Migrate S3 to GCP's Cloud Storage for cost optimization",
+      "implementation_effort": "High",
+      "risk_level": "Medium",
+      "steps": [
+        "Assess S3 compatibility with GCP",
+        "Migrate S3 to GCP using Cloud Storage Transfer",
+        "Configure GCP Cloud Storage"
+      ],
+      "cloud_providers": [
+        "AWS",
+        "GCP"
       ]
     }
   ],
-  "total_potential_savings": 30300,
-  "savings_percentage": 63.12,
-  "recommendations_count": 5
+  "total_potential_savings": 11134.75,
+  "savings_percentage": 85.65,
+  "recommendations_count": 8
 }
+
