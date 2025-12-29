@@ -12,7 +12,7 @@ LLM_REPO = "meta-llama/Meta-Llama-3-8B-Instruct"
 # Initialize the InferenceClient
 client = InferenceClient(model=LLM_REPO, token=HF_API_TOKEN)
 
-def call_llm(prompt: str, max_tokens: int = 2000) -> str:
+def call_llm(prompt: str, max_tokens: int = 3500) -> str:
     """
     Call the LLM via Hugging Face Inference API using Chat Completion.
     """
@@ -20,7 +20,7 @@ def call_llm(prompt: str, max_tokens: int = 2000) -> str:
         messages = [{"role": "user", "content": prompt}]
         response = client.chat_completion(
             messages=messages, 
-            max_tokens=max_tokens  # Increased limit to prevent cut-offs
+            max_tokens=max_tokens
         )
         
         return response.choices[0].message.content
