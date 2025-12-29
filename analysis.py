@@ -29,8 +29,3 @@ def analyze_costs(profile: dict, billing: list) -> dict:
     analysis["is_over_budget"] = total_cost > budget
     return analysis
 
-# Example usage:
-# profile = json.load(open("data/project_profile.json"))
-# billing = json.load(open("data/mock_billing.json"))
-# analysis = analyze_costs(profile, billing)
-# Then integrate 'analysis' into the final report JSON.
