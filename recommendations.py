@@ -53,7 +53,7 @@ def generate_recommendations(profile: dict, analysis: dict, attempts: int = 3) -
         try:
             recs = json.loads(cleaned_json_str)
             
-            # Load schema for validation (same behavior as before)
+            # Load schema for validation 
             with open("schemas/cost_report_schema.json") as f:
                 full_schema = json.load(f)
                 
