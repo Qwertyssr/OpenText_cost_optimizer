@@ -1,0 +1,61 @@
+{
+  "type": "object",
+  "properties": {
+    "project_name": { "type": "string" },
+    "analysis": {
+      "type": "object",
+      "properties": {
+        "total_monthly_cost": { "type": "number" },
+        "budget": { "type": "number" },
+        "budget_variance": { "type": "number" },
+        "service_costs": {
+          "type": "object",
+          "patternProperties": {
+            "^[A-Za-z0-9_\\s]+$": { "type": "number" }
+          }
+        },
+        "high_cost_services": {
+          "type": "object",
+          "patternProperties": {
+            "^[A-Za-z0-9_\\s]+$": { "type": "number" }
+          }
+        }
+      },
+      "required": ["total_monthly_cost","budget","budget_variance","service_costs","high_cost_services"],
+      "additionalProperties": false
+    },
+    "is_over_budget": { "type": "boolean" },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "service": { "type": "string" },
+          "current_cost": { "type": "number" },
+          "potential_savings": { "type": "number" },
+          "recommendation_type": { "type": "string" },
+          "description": { "type": "string" },
+          "implementation_effort": { "type": "string" },
+          "risk_level": { "type": "string" },
+          "steps": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "cloud_providers": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["title","service","current_cost","potential_savings","recommendation_type","description","implementation_effort","risk_level","steps","cloud_providers"],
+        "additionalProperties": false
+      }
+    },
+    "total_potential_savings": { "type": "number" },
+    "savings_percentage": { "type": "number" },
+    "recommendations_count": { "type": "number" }
+  },
+  "required": ["project_name","analysis","is_over_budget","recommendations"],
+  "additionalProperties": false
+}
+

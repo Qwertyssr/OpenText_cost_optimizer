@@ -1,0 +1,46 @@
+[
+  {
+    "month": "2023-10",
+    "service": "AWS S3",
+    "resource_id": "abc123",
+    "region": "ap-south-1",
+    "usage_type": "Storage",
+    "usage_quantity": 100,
+    "unit": "GB",
+    "cost_inr": 1.0,
+    "desc": "Storage cost in ap-south-1 region"
+  },
+  {
+    "month": "2023-10",
+    "service": "AWS EC2",
+    "resource_id": "def456",
+    "region": "ap-south-1",
+    "usage_type": "Compute",
+    "usage_quantity": 10,
+    "unit": "Hours",
+    "cost_inr": 0.1,
+    "desc": "Compute cost in ap-south-1 region"
+  },
+  {
+    "month": "2023-10",
+    "service": "AWS S3",
+    "resource_id": "ghi789",
+    "region": "ap-south-1",
+    "usage_type": "Storage",
+    "usage_quantity": 50,
+    "unit": "GB",
+    "cost_inr": 0.5,
+    "desc": "Storage cost in ap-south-1 region"
+  },
+  {
+    "month": "2023-11",
+    "service": "AWS EC2",
+    "resource_id": "jkl012",
+    "region": "ap-south-1",
+    "usage_type": "Compute",
+    "usage_quantity": 20,
+    "unit": "Hours",
+    "cost_inr": 0.2,
+    "desc": "Compute cost in ap-south-1 region"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "month": { "type": "string", "pattern": "^\\d{4}-\\d{2}$" },
+      "service": { "type": "string" },
+      "resource_id": { "type": "string" },
+      "region": { "type": "string" },
+      "usage_type": { "type": "string" },
+      "usage_quantity": { "type": "number" },
+      "unit": { "type": "string" },
+      "cost_inr": { "type": "number" },
+      "desc": { "type": "string" }
+    },
+    "required": ["month","service","resource_id","region","usage_type","usage_quantity","unit","cost_inr","desc"],
+    "additionalProperties": true
+  }
+}
+

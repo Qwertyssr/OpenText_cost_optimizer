@@ -1,0 +1,94 @@
+{
+  "project_name": "",
+  "analysis": {
+    "total_monthly_cost": 1.8,
+    "budget": 0,
+    "budget_variance": 1.8,
+    "service_costs": {
+      "AWS S3": 1.5,
+      "AWS EC2": 0.30000000000000004
+    },
+    "high_cost_services": {
+      "AWS S3": 1.5
+    },
+    "is_over_budget": true
+  },
+  "is_over_budget": true,
+  "recommendations": [
+    {
+      "title": "AWS EC2 Rightsizing",
+      "service": "AWS EC2",
+      "current_cost": 0.30000000000000004,
+      "potential_savings": 0.15000000000000002,
+      "recommendation_type": "Rightsizing",
+      "description": "Rightsize EC2 instances to reduce costs. Consider downsizing or terminating underutilized instances.",
+      "implementation_effort": "Medium",
+      "risk_level": "Low",
+      "steps": [
+        "Audit and identify underutilized EC2 instances",
+        "Downsize or terminate underutilized instances",
+        "Monitor and adjust instance sizes as needed"
+      ],
+      "cloud_providers": [
+        "AWS"
+      ]
+    },
+    {
+      "title": "AWS EC2 Spot Instances",
+      "service": "AWS EC2",
+      "current_cost": 0.30000000000000004,
+      "potential_savings": 0.15000000000000002,
+      "recommendation_type": "Spot Instances",
+      "description": "Utilize Spot Instances for non-critical workloads to reduce costs.",
+      "implementation_effort": "Medium",
+      "risk_level": "Medium",
+      "steps": [
+        "Identify non-critical workloads",
+        "Configure Spot Instances for non-critical workloads",
+        "Monitor and adjust Spot Instance configurations as needed"
+      ],
+      "cloud_providers": [
+        "AWS"
+      ]
+    },
+    {
+      "title": "Azure Blob Storage",
+      "service": "Azure Blob Storage",
+      "current_cost": 0,
+      "potential_savings": 1.5,
+      "recommendation_type": "Multi-Cloud",
+      "description": "Consider migrating S3 buckets to Azure Blob Storage to reduce costs.",
+      "implementation_effort": "High",
+      "risk_level": "Medium",
+      "steps": [
+        "Assess compatibility and migrate S3 buckets to Azure Blob Storage",
+        "Configure Azure Blob Storage for data storage needs",
+        "Monitor and adjust storage configurations as needed"
+      ],
+      "cloud_providers": [
+        "Azure"
+      ]
+    },
+    {
+      "title": "Google Cloud Storage",
+      "service": "Google Cloud Storage",
+      "current_cost": 0,
+      "potential_savings": 1.5,
+      "recommendation_type": "Multi-Cloud",
+      "description": "Consider migrating S3 buckets to Google Cloud Storage to reduce costs.",
+      "implementation_effort": "High",
+      "risk_level": "Medium",
+      "steps": [
+        "Assess compatibility and migrate S3 buckets to Google Cloud Storage",
+        "Configure Google Cloud Storage for data storage needs",
+        "Monitor and adjust storage configurations as needed"
+      ],
+      "cloud_providers": [
+        "GCP"
+      ]
+    }
+  ],
+  "total_potential_savings": 3.3,
+  "savings_percentage": 183.33,
+  "recommendations_count": 4
+}

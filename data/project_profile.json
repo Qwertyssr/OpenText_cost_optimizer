@@ -1,0 +1,13 @@
+{
+  "name": "",
+  "budget_inr_per_month": 0,
+  "description": "",
+  "tech_stack": {
+    "frontend": "React",
+    "backend": "Django",
+    "database": "PostgreSQL",
+    "proxy": "Nginx",
+    "hosting": "AWS"
+  },
+  "non_functional_requirements": []
+}

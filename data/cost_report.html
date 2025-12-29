@@ -1,0 +1,116 @@
+<html><body><pre>{
+  "project_name": "Food Delivery App",
+  "analysis": {
+    "total_monthly_cost": 59500,
+    "budget": 50000,
+    "budget_variance": 9500,
+    "service_costs": {
+      "AWS EC2": 6500,
+      "S3": 2000,
+      "AWS Lambda": 35000,
+      "RDS": 16000
+    },
+    "high_cost_services": {
+      "AWS Lambda": 35000
+    },
+    "is_over_budget": true
+  },
+  "is_over_budget": true,
+  "recommendations": [
+    {
+      "title": "Downsize AWS EC2",
+      "service": "AWS EC2",
+      "current_cost": 6500,
+      "potential_savings": 3250,
+      "recommendation_type": "Rightsizing",
+      "description": "Downsize the AWS EC2 instance to a smaller instance type to reduce costs.",
+      "implementation_effort": "Medium",
+      "risk_level": "Low",
+      "steps": [
+        "Identify the current instance type and usage.",
+        "Choose a smaller instance type that meets the requirements.",
+        "Update the instance type in the AWS Management Console."
+      ],
+      "cloud_providers": [
+        "AWS"
+      ]
+    },
+    {
+      "title": "Use Azure Blob Storage",
+      "service": "S3",
+      "current_cost": 2000,
+      "potential_savings": 2000,
+      "recommendation_type": "Multi-Cloud",
+      "description": "Migrate S3 storage to Azure Blob Storage to take advantage of lower costs.",
+      "implementation_effort": "High",
+      "risk_level": "Medium",
+      "steps": [
+        "Identify the data stored in S3.",
+        "Create an Azure Blob Storage account.",
+        "Migrate the data from S3 to Azure Blob Storage."
+      ],
+      "cloud_providers": [
+        "AWS",
+        "Azure"
+      ]
+    },
+    {
+      "title": "Use GCP Cloud Storage for Cold Data",
+      "service": "S3",
+      "current_cost": 2000,
+      "potential_savings": 1000,
+      "recommendation_type": "Multi-Cloud",
+      "description": "Migrate cold data from S3 to GCP Cloud Storage to take advantage of lower costs.",
+      "implementation_effort": "Medium",
+      "risk_level": "Low",
+      "steps": [
+        "Identify the cold data stored in S3.",
+        "Create a GCP Cloud Storage account.",
+        "Migrate the cold data from S3 to GCP Cloud Storage."
+      ],
+      "cloud_providers": [
+        "AWS",
+        "GCP"
+      ]
+    },
+    {
+      "title": "Use AWS Lambda Edge",
+      "service": "AWS Lambda",
+      "current_cost": 35000,
+      "potential_savings": 17500,
+      "recommendation_type": "Rightsizing",
+      "description": "Use AWS Lambda Edge to reduce the number of requests to AWS Lambda and lower costs.",
+      "implementation_effort": "High",
+      "risk_level": "Medium",
+      "steps": [
+        "Identify the use cases for AWS Lambda.",
+        "Choose the use cases that can be optimized with AWS Lambda Edge.",
+        "Update the code to use AWS Lambda Edge."
+      ],
+      "cloud_providers": [
+        "AWS"
+      ]
+    },
+    {
+      "title": "Use Open-Source RDS Alternative",
+      "service": "RDS",
+      "current_cost": 16000,
+      "potential_savings": 8000,
+      "recommendation_type": "Open-Source",
+      "description": "Use an open-source RDS alternative such as PostgreSQL to reduce costs.",
+      "implementation_effort": "High",
+      "risk_level": "High",
+      "steps": [
+        "Identify the database requirements.",
+        "Choose an open-source RDS alternative that meets the requirements.",
+        "Migrate the database to the open-source RDS alternative."
+      ],
+      "cloud_providers": [
+        "AWS"
+      ]
+    }
+  ],
+  "total_potential_savings": 31750,
+  "savings_percentage": 53.36,
+  "recommendations_count": 5
+}</pre></body></html>

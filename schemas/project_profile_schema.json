@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "budget_inr_per_month": { "type": "number" },
+    "description": { "type": "string" },
+    "tech_stack": {
+      "type": "object",
+      "properties": {
+        "frontend": { "type": "string" },
+        "backend": { "type": "string" },
+        "database": { "type": "string" },
+        "proxy": { "type": "string" },
+        "hosting": { "type": "string" }
+      },
+      "required": ["frontend", "backend", "database", "proxy", "hosting"],
+      "additionalProperties": true
+    },
+    "non_functional_requirements": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["name", "budget_inr_per_month", "description", "tech_stack", "non_functional_requirements"],
+  "additionalProperties": true
+}
+
