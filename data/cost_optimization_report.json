@@ -1,94 +1,113 @@
 {
-  "project_name": "",
+  "project_name": "food delivery app",
   "analysis": {
-    "total_monthly_cost": 1.8,
-    "budget": 0,
-    "budget_variance": 1.8,
+    "total_monthly_cost": 48000,
+    "budget": 50000,
+    "budget_variance": -2000,
     "service_costs": {
-      "AWS S3": 1.5,
-      "AWS EC2": 0.30000000000000004
+      "AWS S3": 28000,
+      "AWS EC2": 15000,
+      "AWS Lambda": 5000
     },
     "high_cost_services": {
-      "AWS S3": 1.5
+      "AWS S3": 28000
     },
-    "is_over_budget": true
+    "is_over_budget": false
   },
-  "is_over_budget": true,
+  "is_over_budget": false,
   "recommendations": [
     {
-      "title": "AWS EC2 Rightsizing",
-      "service": "AWS EC2",
-      "current_cost": 0.30000000000000004,
-      "potential_savings": 0.15000000000000002,
-      "recommendation_type": "Rightsizing",
-      "description": "Rightsize EC2 instances to reduce costs. Consider downsizing or terminating underutilized instances.",
-      "implementation_effort": "Medium",
-      "risk_level": "Low",
-      "steps": [
-        "Audit and identify underutilized EC2 instances",
-        "Downsize or terminate underutilized instances",
-        "Monitor and adjust instance sizes as needed"
-      ],
-      "cloud_providers": [
-        "AWS"
-      ]
-    },
-    {
-      "title": "AWS EC2 Spot Instances",
-      "service": "AWS EC2",
-      "current_cost": 0.30000000000000004,
-      "potential_savings": 0.15000000000000002,
-      "recommendation_type": "Spot Instances",
-      "description": "Utilize Spot Instances for non-critical workloads to reduce costs.",
+      "title": "Migrate to Azure Blob Storage",
+      "service": "Storage",
+      "current_cost": 28000,
+      "potential_savings": 5600,
+      "recommendation_type": "Multi-cloud",
+      "description": "Migrate data storage from AWS S3 to Azure Blob Storage to take advantage of lower costs.",
       "implementation_effort": "Medium",
       "risk_level": "Medium",
       "steps": [
-        "Identify non-critical workloads",
-        "Configure Spot Instances for non-critical workloads",
-        "Monitor and adjust Spot Instance configurations as needed"
+        "Assess data storage requirements and migration complexity",
+        "Configure Azure Blob Storage account",
+        "Migrate data from AWS S3 to Azure Blob Storage"
       ],
       "cloud_providers": [
-        "AWS"
-      ]
-    },
-    {
-      "title": "Azure Blob Storage",
-      "service": "Azure Blob Storage",
-      "current_cost": 0,
-      "potential_savings": 1.5,
-      "recommendation_type": "Multi-Cloud",
-      "description": "Consider migrating S3 buckets to Azure Blob Storage to reduce costs.",
-      "implementation_effort": "High",
-      "risk_level": "Medium",
-      "steps": [
-        "Assess compatibility and migrate S3 buckets to Azure Blob Storage",
-        "Configure Azure Blob Storage for data storage needs",
-        "Monitor and adjust storage configurations as needed"
-      ],
-      "cloud_providers": [
+        "AWS",
         "Azure"
       ]
     },
     {
-      "title": "Google Cloud Storage",
-      "service": "Google Cloud Storage",
-      "current_cost": 0,
-      "potential_savings": 1.5,
-      "recommendation_type": "Multi-Cloud",
-      "description": "Consider migrating S3 buckets to Google Cloud Storage to reduce costs.",
-      "implementation_effort": "High",
-      "risk_level": "Medium",
+      "title": "Use GCP Cloud Storage for Backup",
+      "service": "Storage",
+      "current_cost": 28000,
+      "potential_savings": 1700,
+      "recommendation_type": "Multi-cloud",
+      "description": "Use GCP Cloud Storage for backup purposes to reduce costs on AWS S3.",
+      "implementation_effort": "Low",
+      "risk_level": "Low",
       "steps": [
-        "Assess compatibility and migrate S3 buckets to Google Cloud Storage",
-        "Configure Google Cloud Storage for data storage needs",
-        "Monitor and adjust storage configurations as needed"
+        "Configure GCP Cloud Storage account",
+        "Set up backup process to use GCP Cloud Storage"
       ],
       "cloud_providers": [
+        "AWS",
         "GCP"
+      ]
+    },
+    {
+      "title": "Downsize AWS EC2 Instances",
+      "service": "Compute",
+      "current_cost": 15000,
+      "potential_savings": 3000,
+      "recommendation_type": "Rightsizing",
+      "description": "Downsize AWS EC2 instances to match current workload requirements.",
+      "implementation_effort": "Medium",
+      "risk_level": "Medium",
+      "steps": [
+        "Assess current workload requirements",
+        "Downsize EC2 instances to match requirements"
+      ],
+      "cloud_providers": [
+        "AWS"
+      ]
+    },
+    {
+      "title": "Use AWS Lambda Free Tier",
+      "service": "Serverless Compute",
+      "current_cost": 5000,
+      "potential_savings": 5000,
+      "recommendation_type": "Free Tier",
+      "description": "Utilize the free tier of AWS Lambda to reduce costs.",
+      "implementation_effort": "Low",
+      "risk_level": "Low",
+      "steps": [
+        "Review current usage of AWS Lambda",
+        "Configure AWS Lambda functions to use free tier"
+      ],
+      "cloud_providers": [
+        "AWS"
+      ]
+    },
+    {
+      "title": "Use Open-Source Alternatives for AWS Services",
+      "service": "Database",
+      "current_cost": 0,
+      "potential_savings": 15000,
+      "recommendation_type": "Open-source Alternatives",
+      "description": "Use open-source alternatives for AWS services to reduce costs.",
+      "implementation_effort": "High",
+      "risk_level": "High",
+      "steps": [
+        "Assess current database requirements",
+        "Migrate to open-source database solutions"
+      ],
+      "cloud_providers": [
+        "AWS",
+        "GCP",
+        "Azure"
       ]
     }
   ],
-  "total_potential_savings": 3.3,
-  "savings_percentage": 183.33,
-  "recommendations_count": 4
+  "total_potential_savings": 30300,
+  "savings_percentage": 63.12,
+  "recommendations_count": 5
 }
