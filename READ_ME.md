@@ -75,3 +75,6 @@ Output Files:
 project_profile.json: structured budget, tech stack, and requirements
 mock_billing.json: ~15 realistic cloud usage entries
 cost_optimization_report.json: total cost, savings, suggestions
+
+
+used attempts: linear backoff that grows with each retry so we don’t immediately hammer the LLM/endpoint — 0.8 * attempt gives ~0.8s, 1.6s, 2.4s for attempts , can use exponential also
