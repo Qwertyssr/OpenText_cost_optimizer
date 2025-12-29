@@ -1,6 +1,7 @@
 import json
 import jsonschema
 import re
+import time
 from llm_utils import call_llm
 
 def clean_llm_json_output(raw_text: str) -> str:
@@ -12,11 +13,12 @@ def clean_llm_json_output(raw_text: str) -> str:
         return match.group(1).strip()
     return raw_text.strip()
 
-def extract_project_profile(description_text: str) -> dict:
+def extract_project_profile(description_text: str, attempts: int = 3) -> dict:
     """
     Use the LLM to parse the project description and output a structured profile JSON.
+    Retries up to `attempts` times on parse/validation failures.
     """
-    # UPDATED PROMPT: Specific instructions for the 'tech_stack' object structure
+
     prompt = (
         f"You are a strict data extraction assistant. "
         f"Extract a JSON object from the text below with these exact fields:\n"
@@ -31,29 +33,42 @@ def extract_project_profile(description_text: str) -> dict:
         f"1. Output ONLY valid JSON.\n"
         f"2. Do NOT include markdown formatting.\n"
     )
-    
-    raw = call_llm(prompt)
-    cleaned_json_str = clean_llm_json_output(raw)
 
-    try:
-        profile = json.loads(cleaned_json_str)
-        
-        # Load schema and validate
-        with open("schemas/project_profile_schema.json") as f:
-            schema = json.load(f)
-        jsonschema.validate(profile, schema)
-        
-        return profile
+    last_exc = None
+    for attempt in range(1, attempts + 1):
+        raw = call_llm(prompt)
+        cleaned_json_str = clean_llm_json_output(raw)
 
-    except json.JSONDecodeError as e:
-        print(f"❌ JSON Parsing Failed.\nRaw LLM Output:\n{raw}\n")
-        raise e
-    except jsonschema.ValidationError as e:
-        # Improved error logging to see exactly what failed validation
-        print(f"❌ Schema Validation Failed.\nLLM Output: {json.dumps(profile, indent=2)}\nError: {e.message}")
-        raise e
-    except Exception as e:
-        print(f"❌ Unexpected Error: {e}")
-        raise e
+        try:
+            profile = json.loads(cleaned_json_str)
 
+            # Load schema and validate (keeps original behavior)
+            with open("schemas/project_profile_schema.json") as f:
+                schema = json.load(f)
+            jsonschema.validate(profile, schema)
 
+            return profile
+
+        except json.JSONDecodeError as e:
+            last_exc = e
+            print(f"❌ JSON Parsing Failed (attempt {attempt}/{attempts}).")
+            print(f"Raw LLM Output (truncated):\n{(raw or '')[:1500]}\n")
+        except jsonschema.ValidationError as e:
+            last_exc = e
+            print(f"❌ Schema Validation Failed (attempt {attempt}/{attempts}).")
+            print(f"LLM Output Parsed (truncated):\n{parsed_preview[:1500]}\n")
+            print(f"Error: {e.message}")
+        except Exception as e:
+            last_exc = e
+            print(f"❌ Unexpected Error (attempt {attempt}/{attempts}): {e}")
+            print(f"Raw LLM Output (truncated):\n{(raw or '')[:1500]}\n")
+
+        if attempt < attempts:
+            wait = 0.8 * attempt
+            print(f"Retrying in {wait:.1f}s...")
+            time.sleep(wait)
+        else:
+            print("All profile-extraction attempts failed.")
+
+    # If all attempts fail, raise the last exception
+    raise last_exc
